@@ -3,7 +3,7 @@ version 1.0
 ## Copyright Aparicio Lab (BC Cancer Research Centre), 2022 
 ## Created by Jenna Liebe
 ##
-## Last Updated: August 22, 2023 by Kelly Zhang - added GetBamHeader task
+## Last Updated: September 18, 2023 by Matthew Cho - changed output_basename under ConvertPairedFastQsToUnmappedBamWf call
 ## 
 ## This WDL pipeline strips out mouse reads from an input PDX (patient-derived xenograft) file
 ## in BAM format, by performing alignment to a chimeric mouse-human (mm10-hg38) reference
@@ -129,7 +129,7 @@ workflow CleanPDX {
       gotc_docker = gotc_docker
   }
 
-  String output_basename = basename(ConvertPairedFastQsToUnmappedBamWf.output_unmapped_bam)
+  String output_basename = basename(ConvertPairedFastQsToUnmappedBamWf.output_unmapped_bam, ".fastq.unsorted.unmapped.bam")
 
   call FinalSort {
     input:
